@@ -1,9 +1,5 @@
 # Advent_of_Code_2024
 
-Build and run commands:
-`pomdan build -t advent .`
-`podman run --rm advent:latest /bin/advent <day number>`
-
 ## Progress
 - **Total score: 0/50 :star:**
 
