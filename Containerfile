@@ -5,3 +5,5 @@ RUN go build -o /bin/advent .
 
 FROM gcr.io/distroless/base
 COPY --from=build /bin/advent /bin/advent
+WORKDIR /run
+COPY ./inputs /run/inputs
