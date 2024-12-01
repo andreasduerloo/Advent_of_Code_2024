@@ -4,7 +4,7 @@
 - **Total score: 0/50 :star:**
 
 ## Solutions
-- [ ] Day 1:
+- [X] Day 1: [Historian hysteria](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_01) :star::star:
 - [ ] Day 2:
 - [ ] Day 3:
 - [ ] Day 4:
