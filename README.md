@@ -1,12 +1,12 @@
 # Advent_of_Code_2024
 
 ## Progress
-- **Total score: 4/50 :star:**
+- **Total score: 6/50 :star:**
 
 ## Solutions
-- [X] Day 1: [Historian hysteria](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_01) :star::star:
+- [X] Day 1: [Historian Hysteria](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_01) :star::star:
 - [X] Day 2: [Red-Nosed Reports](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_02) :star::star:
-- [ ] Day 3:
+- [X] Day 3: [Mull It Over](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_02) :star::star:
 - [ ] Day 4:
 - [ ] Day 5:
 - [ ] Day 6:
