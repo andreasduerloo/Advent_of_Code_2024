@@ -103,22 +103,12 @@ func addMiddles(u []update) int {
 	return out
 }
 
-func getIncorrect(u []update) []update {
-	out := make([]update, 0)
-
-	for _, ud := range u {
-		if validateUpdate(ud) == 0 {
-			out = append(out, ud)
-		}
-	}
-
-	return out
-}
-
 func fixAndCount(u []update) int {
 	var out int
 
-	toFix := getIncorrect(u)
+	toFix := helpers.Filter(u, func(u update) bool {
+		return validateUpdate(u) == 0
+	})
 
 	for _, ud := range toFix {
 		slices.SortFunc(ud, compare) // This is where the magic happens

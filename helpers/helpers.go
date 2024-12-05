@@ -44,3 +44,15 @@ func ReGetInts(s string) []int {
 
 	return ints
 }
+
+func Filter[T any](s []T, f func(T) bool) []T {
+	out := make([]T, 0)
+
+	for _, elem := range s {
+		if f(elem) {
+			out = append(out, elem)
+		}
+	}
+
+	return out
+}
