@@ -13,8 +13,8 @@ func Solve() (interface{}, interface{}) {
 
 	reports := parse(inStr)
 
-	first := mapReduceSlice(reports, safe)
-	second := mapReduceSlice(reports, dampenSafe)
+	first := len(helpers.Filter(reports, safe))
+	second := len(helpers.Filter(reports, dampenSafe))
 
 	return first, second
 }

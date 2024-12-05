@@ -56,3 +56,23 @@ func Filter[T any](s []T, f func(T) bool) []T {
 
 	return out
 }
+
+func Map[T, U any](s []T, f func(T) U) []U {
+	out := make([]U, 0)
+
+	for _, elem := range s {
+		out = append(out, f(elem))
+	}
+
+	return out
+}
+
+func MapReduce[T, U any](s []T, acc U, f func(T, U) U) U {
+	out := acc
+
+	for _, elem := range s {
+		out = f(elem, out)
+	}
+
+	return out
+}

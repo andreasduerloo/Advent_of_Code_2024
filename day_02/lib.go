@@ -19,18 +19,6 @@ func parse(s string) []report {
 	return out
 }
 
-func mapReduceSlice(s []report, f func(report) bool) int {
-	var out int
-
-	for _, r := range s {
-		if f(r) {
-			out += 1
-		}
-	}
-
-	return out
-}
-
 func diff(a, b int) int {
 	if a >= b {
 		return a - b
