@@ -16,11 +16,9 @@ type update []page
 
 func parse(s string) []update {
 	inputParts := strings.Split(s, "\n\n")
-	ruleInput := inputParts[0]
-	updatesInput := inputParts[1]
 
-	rules := parseRules(ruleInput)
-	updates := parseUpdates(updatesInput, rules)
+	rules := parseRules(inputParts[0])
+	updates := parseUpdates(inputParts[1], rules)
 
 	return updates
 }
