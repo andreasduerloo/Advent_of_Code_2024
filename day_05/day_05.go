@@ -11,10 +11,10 @@ func Solve() (interface{}, interface{}) {
 		fmt.Println("There was an issue getting the input")
 	}
 
-	rules, updates := parse(inStr)
+	updates := parse(inStr)
 
-	first := addMiddles(updates, rules)
-	second := fixAndCount(updates, rules)
+	first := addMiddles(updates)
+	second := fixAndCount(updates)
 
 	return first, second
 }

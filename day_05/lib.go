@@ -12,20 +12,17 @@ type page struct {
 	after  []int
 }
 
-// TO DO: pass updates (that contain pages) instead of a map ints
+type update []page
 
-type update []int
-
-func parse(s string) (map[int]page, []update) {
-	// Separate the rules from the updates
+func parse(s string) []update {
 	inputParts := strings.Split(s, "\n\n")
 	ruleInput := inputParts[0]
 	updatesInput := inputParts[1]
 
 	rules := parseRules(ruleInput)
-	updates := parseUpdates(updatesInput)
+	updates := parseUpdates(updatesInput, rules)
 
-	return rules, updates
+	return updates
 }
 
 func parseRules(s string) map[int]page {
@@ -69,47 +66,50 @@ func parseRules(s string) map[int]page {
 	return rules
 }
 
-func parseUpdates(s string) []update {
+func parseUpdates(s string, r map[int]page) []update {
 	updates := make([]update, 0)
 
 	lines := strings.Split(strings.TrimSpace(s), "\n")
 
 	for _, line := range lines {
-		updates = append(updates, helpers.ReGetInts(line))
+		newUpdate := make(update, 0)
+		numbers := helpers.ReGetInts(line)
+
+		for _, n := range numbers {
+			newUpdate = append(newUpdate, r[n])
+		}
+		updates = append(updates, newUpdate)
 	}
 
 	return updates
 }
 
-func validateUpdate(u update, r map[int]page) int {
-	// An update is not valid if a rule is broken
+func validateUpdate(u update) int {
 	for p := len(u) - 1; p > 0; p-- {
 		for other := p - 1; other >= 0; other-- {
-			if slices.Contains(r[u[other]].after, u[p]) || slices.Contains(r[u[p]].before, u[other]) {
+			if slices.Contains(u[other].after, u[p].number) || slices.Contains(u[p].before, u[other].number) {
 				return 0
 			}
 		}
 	}
-
-	// If we made it this far, the update is fine
-	return u[len(u)/2]
+	return u[len(u)/2].number
 }
 
-func addMiddles(u []update, r map[int]page) int {
+func addMiddles(u []update) int {
 	var out int
 
 	for _, ud := range u {
-		out += validateUpdate(ud, r)
+		out += validateUpdate(ud)
 	}
 
 	return out
 }
 
-func getIncorrect(u []update, r map[int]page) []update {
+func getIncorrect(u []update) []update {
 	out := make([]update, 0)
 
 	for _, ud := range u {
-		if validateUpdate(ud, r) == 0 {
+		if validateUpdate(ud) == 0 {
 			out = append(out, ud)
 		}
 	}
@@ -117,29 +117,17 @@ func getIncorrect(u []update, r map[int]page) []update {
 	return out
 }
 
-func fixAndCount(u []update, r map[int]page) int {
+func fixAndCount(u []update) int {
 	var out int
 
-	toFix := getIncorrect(u, r)
+	toFix := getIncorrect(u)
 
 	for _, ud := range toFix {
-		out += fix(ud, r)
+		slices.SortFunc(ud, compare) // This is where the magic happens
+		out += ud[len(ud)/2].number
 	}
 
 	return out
-}
-
-func fix(u update, r map[int]page) int {
-	// Make a slice of updates rather than ints
-	pages := make([]page, 0)
-
-	for _, p := range u {
-		pages = append(pages, r[p])
-	}
-
-	slices.SortFunc(pages, compare)
-
-	return pages[len(pages)/2].number
 }
 
 func compare(a, b page) int {
