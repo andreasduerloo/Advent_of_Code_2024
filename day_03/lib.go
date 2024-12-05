@@ -2,19 +2,6 @@ package day_03
 
 import "advent/helpers"
 
-/*
-func reduceRe(s []string) int {
-	var out int
-
-	for _, hit := range s {
-		ints := helpers.ReGetInts(hit)
-		out += (ints[0] * ints[1])
-	}
-
-	return out
-}
-*/
-
 func reduceRe(s []string) int {
 	var out int
 	do := true
