@@ -76,3 +76,13 @@ func MapReduce[T, U any](s []T, acc U, f func(T, U) U) U {
 
 	return out
 }
+
+func Sum(s []int) int {
+	var out int
+
+	for _, i := range s {
+		out += i
+	}
+
+	return out
+}

@@ -13,7 +13,7 @@ func Solve() (interface{}, interface{}) {
 
 	updates := parse(inStr)
 
-	first := addMiddles(updates)
+	first := helpers.Sum(helpers.Map(updates, validateUpdate))
 	second := fixAndCount(updates)
 
 	return first, second

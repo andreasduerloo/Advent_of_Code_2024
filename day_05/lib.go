@@ -93,16 +93,6 @@ func validateUpdate(u update) int {
 	return u[len(u)/2].number
 }
 
-func addMiddles(u []update) int {
-	var out int
-
-	for _, ud := range u {
-		out += validateUpdate(ud)
-	}
-
-	return out
-}
-
 func fixAndCount(u []update) int {
 	var out int
 
