@@ -26,8 +26,6 @@ func Solve() (interface{}, interface{}) {
 	// Second star
 	toTry := helpers.Uniq(g.path) // We only try points already on the path, and each point only once (even if it is on the path multiple times)
 
-	// Single-threaded search takes ~11 seconds, split the input in four and use goroutines. Multithreaded took 4 seconds.
-	// We need a goroutine to keep track of how many valid positions we have found
 	var validPositions int
 	found := make(chan struct{}, 5)
 
@@ -52,13 +50,14 @@ func Solve() (interface{}, interface{}) {
 		go func() {
 			defer wg.Done()
 
+			lg := g.copy()
+			lb := b.copy()
+
 			for _, position := range part {
 				if position == startingPosition {
 					continue
 				}
-				// lb, lg := parseMap(inStr) // Load everything up from scratch
-				lg := g.copy()
-				lb := b.copy()
+
 				lb.obstacles[position] = true
 
 				for lg.inBounds && !lg.cycle {
@@ -68,6 +67,8 @@ func Solve() (interface{}, interface{}) {
 				if lg.cycle {
 					found <- struct{}{}
 				}
+
+				lb.obstacles[position] = false
 			}
 		}()
 	}
