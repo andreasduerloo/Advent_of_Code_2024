@@ -26,45 +26,50 @@ func Solve() (interface{}, interface{}) {
 	toTry := helpers.Uniq(g.path) // We only try points already on the path, and each point only once (even if it is on the path multiple times)
 	var second int
 
-	fmt.Println(len(toTry))
-
 	b, g = parseMap(inStr) // Load evetything back up
 	startingPosition := g.location
 
 	start := time.Now()
 
-	for _, position := range toTry {
-		if position == startingPosition {
-			continue
+	/*
+		for _, position := range toTry {
+			if position == startingPosition {
+				continue
+			}
+
+			b.obstacles[position] = true
+
+			for g.inBounds && !g.cycle {
+				g.step(b)
+			}
+
+			if g.cycle {
+				second++
+			}
+
+			delete(b.obstacles, position)
+			g.reset(startingPosition)
 		}
 
-		b.obstacles[position] = true
-
-		for g.inBounds && !g.cycle {
-			g.step(b)
-		}
-
-		if g.cycle {
-			second++
-		}
-
-		delete(b.obstacles, position)
-		g.reset(startingPosition)
-	}
-
-	fmt.Println(time.Since(start))
+		fmt.Println(time.Since(start))
+	*/
 
 	// Second try to multithread
-	var third int
 	found := make(chan struct{})
 
 	go func() {
 		for range found {
-			third++
+			second++
 		}
 	}()
 
-	parts := [][]point{toTry[0 : len(toTry)/2], toTry[(len(toTry)/2)+1:]}
+	parts := [][]point{
+		toTry[0 : len(toTry)/4],
+		toTry[(len(toTry)/4)+1 : len(toTry)/2],
+		toTry[(len(toTry)/2)+1 : 3*(len(toTry)/4)],
+		toTry[3*(len(toTry)/4)+1:],
+	}
+
 	b, g = parseMap(inStr)
 
 	var wg sync.WaitGroup
@@ -104,7 +109,6 @@ func Solve() (interface{}, interface{}) {
 	close(found)
 
 	fmt.Println(time.Since(start))
-	fmt.Println(third)
 
 	return first, second
 }
