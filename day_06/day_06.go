@@ -3,6 +3,7 @@ package day_06
 import (
 	"advent/helpers"
 	"fmt"
+	"sync"
 	"time"
 )
 
@@ -35,10 +36,6 @@ func Solve() (interface{}, interface{}) {
 			continue
 		}
 
-		// Reset the guard
-		// lg.reset(startingPosition)
-		g.reset(startingPosition)
-
 		b.obstacles[position] = true
 
 		for g.inBounds && !g.cycle {
@@ -50,9 +47,63 @@ func Solve() (interface{}, interface{}) {
 		}
 
 		delete(b.obstacles, position)
+		g.reset(startingPosition)
 	}
 
 	fmt.Println(time.Since(start))
+
+	// Second try to multithread
+	var third int
+	found := make(chan struct{})
+
+	go func() {
+		for range found {
+			third++
+		}
+	}()
+
+	parts := [][]point{toTry[0 : len(toTry)/2], toTry[(len(toTry)/2)+1:]}
+	b, g = parseMap(inStr)
+
+	var wg sync.WaitGroup
+
+	start = time.Now()
+	for _, part := range parts {
+		wg.Add(1)
+
+		lb := b.copy()
+		lg := g.copy()
+
+		go func() {
+			defer wg.Done()
+
+			for _, position := range part {
+				if position == startingPosition {
+					continue
+				}
+
+				lg.reset(startingPosition)
+				lb.obstacles[position] = true
+
+				for lg.inBounds && !lg.cycle {
+					lg.step(lb)
+				}
+
+				if lg.cycle {
+					found <- struct{}{}
+				}
+
+				delete(lb.obstacles, position)
+			}
+		}()
+	}
+
+	wg.Wait()
+	close(found)
+
+	fmt.Println(time.Since(start))
+	fmt.Println(third)
+
 	return first, second
 }
 
@@ -68,8 +119,6 @@ var validPositions int
 
 	// Split the input into four parts
 	parts := [][]point{toTry[0 : len(toTry)/4], toTry[(len(toTry)/4)+1 : len(toTry)/2], toTry[(len(toTry)/2)+1 : 3*len(toTry)/4], toTry[3*(len(toTry)/4)+1:]}
-
-	fmt.Println(len(toTry), len(parts[0])+len(parts[1])+len(parts[2])+len(parts[3]))
 
 	b, g = parseMap(inStr) // Load everything up from scratch
 
