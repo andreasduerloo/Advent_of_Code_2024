@@ -26,32 +26,33 @@ func Solve() (interface{}, interface{}) {
 	toTry := helpers.Uniq(g.path) // We only try points already on the path, and each point only once (even if it is on the path multiple times)
 	var second int
 
-	b, g = parseMap(inStr) // Load evetything back up
-	startingPosition := g.location
-
-	start := time.Now()
-
 	/*
-		for _, position := range toTry {
-			if position == startingPosition {
-				continue
+		b, g = parseMap(inStr) // Load evetything back up
+		startingPosition := g.location
+
+		start := time.Now()
+
+
+			for _, position := range toTry {
+				if position == startingPosition {
+					continue
+				}
+
+				b.obstacles[position] = true
+
+				for g.inBounds && !g.cycle {
+					g.step(b)
+				}
+
+				if g.cycle {
+					second++
+				}
+
+				delete(b.obstacles, position)
+				g.reset(startingPosition)
 			}
 
-			b.obstacles[position] = true
-
-			for g.inBounds && !g.cycle {
-				g.step(b)
-			}
-
-			if g.cycle {
-				second++
-			}
-
-			delete(b.obstacles, position)
-			g.reset(startingPosition)
-		}
-
-		fmt.Println(time.Since(start))
+			fmt.Println(time.Since(start))
 	*/
 
 	// Second try to multithread
@@ -71,6 +72,9 @@ func Solve() (interface{}, interface{}) {
 	}
 
 	b, g = parseMap(inStr)
+	startingPosition := g.location
+
+	start := time.Now()
 
 	var wg sync.WaitGroup
 
