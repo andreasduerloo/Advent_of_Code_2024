@@ -1,7 +1,7 @@
 # Advent_of_Code_2024
 
 ## Progress
-- **Total score: 10/50 :star:**
+- **Total score: 12/50 :star:**
 
 ## Solutions
 - [X] Day 1: [Historian Hysteria](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_01) :star::star:
@@ -9,7 +9,7 @@
 - [X] Day 3: [Mull It Over](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_03) :star::star:
 - [X] Day 4: [Ceres Search](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_04) :star::star:
 - [X] Day 5: [Print Queue](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_05) :star::star:
-- [ ] Day 6:
+- [X] Day 6: [Guard Gallivant](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_06) :star::star:
 - [ ] Day 7:
 - [ ] Day 8:
 - [ ] Day 9:
