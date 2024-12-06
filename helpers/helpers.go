@@ -86,3 +86,17 @@ func Sum(s []int) int {
 
 	return out
 }
+
+func Uniq[T comparable](s []T) []T {
+	out := make([]T, 0)
+	present := make(map[T]struct{})
+
+	for _, elem := range s {
+		if _, seen := present[elem]; !seen {
+			present[elem] = struct{}{}
+			out = append(out, elem)
+		}
+	}
+
+	return out
+}
