@@ -121,7 +121,7 @@ func (g *guard) copy() guard {
 func (g *guard) reset(start point) {
 	g.location = start
 	g.direction = 0
-	g.states = map[state]struct{}{state{g.location, 0}: {}}
+	g.states = map[state]struct{}{{g.location, 0}: {}}
 	g.inBounds = true
 	g.cycle = false
 }

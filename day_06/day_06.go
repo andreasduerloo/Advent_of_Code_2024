@@ -74,11 +74,9 @@ func Solve() (interface{}, interface{}) {
 	b, g = parseMap(inStr)
 	startingPosition := g.location
 
-	start := time.Now()
-
 	var wg sync.WaitGroup
 
-	start = time.Now()
+	start := time.Now()
 	for _, part := range parts {
 		wg.Add(1)
 
