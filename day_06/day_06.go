@@ -26,6 +26,8 @@ func Solve() (interface{}, interface{}) {
 	toTry := helpers.Uniq(g.path) // We only try points already on the path, and each point only once (even if it is on the path multiple times)
 	var second int
 
+	fmt.Println(len(toTry))
+
 	b, g = parseMap(inStr) // Load evetything back up
 	startingPosition := g.location
 
