@@ -106,6 +106,31 @@ func (g *guard) turn() {
 	g.direction = (g.direction + 1) % 4
 }
 
+func (g *guard) copy() guard {
+	return guard{
+		location:  g.location,
+		direction: g.direction,
+		unique:    0,
+		path:      make([]point, 0),
+		states:    make(map[state]struct{}),
+		inBounds:  true,
+		cycle:     false,
+	}
+}
+
+func (b *board) copy() board {
+	obs := make(map[point]bool)
+
+	for k, v := range b.obstacles {
+		obs[k] = v
+	}
+	return board{
+		obstacles: obs,
+		height:    b.height,
+		width:     b.width,
+	}
+}
+
 const (
 	UP = iota
 	RIGHT

@@ -4,6 +4,7 @@ import (
 	"advent/helpers"
 	"fmt"
 	"sync"
+	"time"
 )
 
 func Solve() (interface{}, interface{}) {
@@ -39,9 +40,12 @@ func Solve() (interface{}, interface{}) {
 	// Split the input into four parts
 	parts := [][]point{toTry[0 : len(toTry)/4], toTry[(len(toTry)/4)+1 : len(toTry)/2], toTry[(len(toTry)/2)+1 : 3*len(toTry)/4], toTry[3*(len(toTry)/4)+1:]}
 
+	b, g = parseMap(inStr) // Load everything up from scratch
+
 	// Make a WaitGroup
 	var wg sync.WaitGroup
 
+	start := time.Now()
 	for _, part := range parts {
 		wg.Add(1)
 
@@ -52,14 +56,16 @@ func Solve() (interface{}, interface{}) {
 				if position == startingPosition {
 					continue
 				}
-				b, g := parseMap(inStr) // Load everything up from scratch
-				b.obstacles[position] = true
+				// lb, lg := parseMap(inStr) // Load everything up from scratch
+				lg := g.copy()
+				lb := b.copy()
+				lb.obstacles[position] = true
 
-				for g.inBounds && !g.cycle {
-					g.step(b)
+				for lg.inBounds && !lg.cycle {
+					lg.step(lb)
 				}
 
-				if g.cycle {
+				if lg.cycle {
 					found <- struct{}{}
 				}
 			}
@@ -68,6 +74,9 @@ func Solve() (interface{}, interface{}) {
 
 	wg.Wait()
 	close(found)
+
+	end := time.Now()
+	fmt.Println(end.Sub(start))
 
 	return first, validPositions
 }
