@@ -54,6 +54,9 @@ func Solve() (interface{}, interface{}) {
 			lb := b.copy()
 
 			for _, position := range part {
+				// Reset the guard
+				lg.reset(startingPosition)
+
 				if position == startingPosition {
 					continue
 				}
@@ -68,7 +71,7 @@ func Solve() (interface{}, interface{}) {
 					found <- struct{}{}
 				}
 
-				lb.obstacles[position] = false
+				delete(lb.obstacles, position)
 			}
 		}()
 	}
