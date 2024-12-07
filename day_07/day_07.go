@@ -3,6 +3,7 @@ package day_07
 import (
 	"advent/helpers"
 	"fmt"
+	"time"
 )
 
 func Solve() (interface{}, interface{}) {
@@ -13,12 +14,16 @@ func Solve() (interface{}, interface{}) {
 
 	lines := parse(inStr)
 
-	// First star
-	first := helpers.Sum(helpers.Map(helpers.Filter(lines, fix), func(s []int) int { // TO DO: all of this could be done in one loop with a MapReduce function
-		return s[0]
-	}))
+	start := time.Now()
 
-	first = helpers.MapReduce(lines, 0, func(s []int, acc int) int {
+	// First star
+	/*
+		first := helpers.Sum(helpers.Map(helpers.Filter(lines, fix), func(s []int) int {
+			return s[0]
+		}))
+	*/
+
+	first := helpers.MapReduce(lines, 0, func(s []int, acc int) int {
 		if fix(s) {
 			acc += s[0]
 		}
@@ -26,9 +31,19 @@ func Solve() (interface{}, interface{}) {
 	})
 
 	// Second star
-	second := helpers.Sum(helpers.Map(helpers.Filter(lines, fixConcat), func(s []int) int {
-		return s[0]
-	}))
+	/*
+		second := helpers.Sum(helpers.Map(helpers.Filter(lines, fixConcat), func(s []int) int {
+			return s[0]
+		}))
+	*/
 
+	second := helpers.MapReduce(lines, 0, func(s []int, acc int) int {
+		if fixConcat(s) {
+			acc += s[0]
+		}
+		return acc
+	})
+
+	fmt.Println(time.Since(start))
 	return first, second
 }
