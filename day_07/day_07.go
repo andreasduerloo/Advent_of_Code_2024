@@ -14,18 +14,14 @@ func Solve() (interface{}, interface{}) {
 	lines := parse(inStr)
 
 	// First star
-	results := helpers.Filter(lines, fix)
-	values := helpers.Map(results, func(s []int) int {
+	first := helpers.Sum(helpers.Map(helpers.Filter(lines, fix), func(s []int) int { // TO DO: all of this could be done in one loop with a MapReduce function
 		return s[0]
-	})
-	first := helpers.Sum(values)
+	}))
 
 	// Second star
-	results = helpers.Filter(lines, fixConcat)
-	values = helpers.Map(results, func(s []int) int {
+	second := helpers.Sum(helpers.Map(helpers.Filter(lines, fixConcat), func(s []int) int {
 		return s[0]
-	})
-	second := helpers.Sum(values)
+	}))
 
 	return first, second
 }
