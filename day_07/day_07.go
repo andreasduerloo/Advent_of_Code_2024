@@ -18,6 +18,13 @@ func Solve() (interface{}, interface{}) {
 		return s[0]
 	}))
 
+	first = helpers.MapReduce(lines, 0, func(s []int, acc int) int {
+		if fix(s) {
+			acc += s[0]
+		}
+		return acc
+	})
+
 	// Second star
 	second := helpers.Sum(helpers.Map(helpers.Filter(lines, fixConcat), func(s []int) int {
 		return s[0]
