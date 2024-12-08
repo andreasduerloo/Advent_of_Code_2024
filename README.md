@@ -10,8 +10,8 @@
 - [X] Day 4: [Ceres Search](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_04) :star::star:
 - [X] Day 5: [Print Queue](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_05) :star::star:
 - [X] Day 6: [Guard Gallivant](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_06) :star::star:
-- [X] Day 7: [Bridge Repair](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_06) :star::star:
-- [ ] Day 8:
+- [X] Day 7: [Bridge Repair](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_07) :star::star:
+- [X] Day 8: [Resonant Collinearity](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_08) :star::star:
 - [ ] Day 9:
 - [ ] Day 10:
 - [ ] Day 11:
