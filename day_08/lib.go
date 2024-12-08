@@ -13,7 +13,7 @@ func parse(s string) map[rune][]point {
 	for y, line := range strings.Split(strings.TrimSpace(s), "\n") {
 		for x, r := range line {
 			if r != '.' { // This is an antenna
-				if _, present := antennas[r]; !present { // Which we haven't sene before
+				if _, present := antennas[r]; !present { // Which we haven't seen before
 					antennas[r] = []point{{x: x, y: y}}
 				} else { // Which we have seen before
 					antennaSlice := antennas[r]
