@@ -1,7 +1,7 @@
 # Advent_of_Code_2024
 
 ## Progress
-- **Total score: 16/50 :star:**
+- **Total score: 18/50 :star:**
 
 ## Solutions
 - [X] Day 1: [Historian Hysteria](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_01) :star::star:
@@ -12,7 +12,7 @@
 - [X] Day 6: [Guard Gallivant](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_06) :star::star:
 - [X] Day 7: [Bridge Repair](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_07) :star::star:
 - [X] Day 8: [Resonant Collinearity](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_08) :star::star:
-- [ ] Day 9:
+- [X] Day 9: [Disk Fragmenter](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_09) :star::star:
 - [ ] Day 10:
 - [ ] Day 11:
 - [ ] Day 12:
