@@ -13,7 +13,8 @@ func Solve() (interface{}, interface{}) {
 
 	topoMap := buildGrid(inStr)
 
-	first := scanGrid(topoMap)
+	first := scanGrid(topoMap, false)
+	second := scanGrid(topoMap, true)
 
-	return first, 0
+	return first, second
 }

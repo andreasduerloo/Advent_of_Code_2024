@@ -35,13 +35,13 @@ func buildGrid(s string) topoMap {
 	}
 }
 
-func scanGrid(tm topoMap) int {
+func scanGrid(tm topoMap, second bool) int {
 	var out int
 
 	for y := 0; y < tm.height; y++ {
 		for x := 0; x < tm.width; x++ {
 			if tm.grid[point{x, y}] == 0 {
-				out += findRoutes(point{x, y}, tm)
+				out += findRoutes(point{x, y}, tm, second)
 			}
 		}
 	}
@@ -49,7 +49,7 @@ func scanGrid(tm topoMap) int {
 	return out
 }
 
-func findRoutes(trailHead point, tm topoMap) int { // Depth-first search
+func findRoutes(trailHead point, tm topoMap, second bool) int { // Depth-first search
 	var out int
 	currentPoint := trailHead
 	stack := []point{currentPoint}
@@ -60,16 +60,13 @@ func findRoutes(trailHead point, tm topoMap) int { // Depth-first search
 		stack = stack[1:]
 
 		if tm.grid[currentPoint] == 9 {
-			if !slices.Contains(visited, currentPoint) {
-				out++
-				visited = append(visited, currentPoint)
-			}
-
-			if len(stack) != 0 {
-				currentPoint = stack[0]
-				stack = stack[1:]
+			if !second {
+				if !slices.Contains(visited, currentPoint) {
+					out++
+					visited = append(visited, currentPoint)
+				}
 			} else {
-				break
+				out++
 			}
 		}
 
