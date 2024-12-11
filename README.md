@@ -1,7 +1,7 @@
 # Advent_of_Code_2024
 
 ## Progress
-- **Total score: 20/50 :star:**
+- **Total score: 22/50 :star:**
 
 ## Solutions
 - [X] Day 1: [Historian Hysteria](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_01) :star::star:
@@ -14,7 +14,7 @@
 - [X] Day 8: [Resonant Collinearity](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_08) :star::star:
 - [X] Day 9: [Disk Fragmenter](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_09) :star::star:
 - [X] Day 10: [Hoof It](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_10) :star::star:
-- [ ] Day 11:
+- [X] Day 11: [Plutonian Pebbles](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_11) :star::star:
 - [ ] Day 12:
 - [ ] Day 13:
 - [ ] Day 14:
