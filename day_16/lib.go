@@ -181,6 +181,8 @@ func dijkstra(m maze) int {
 				}
 			}
 
+			fmt.Println(m.layout[nb].cost, localnb.cost)
+
 			if m.layout[nb].visited {
 				if m.layout[nb].cost > localnb.cost { // We found a shorter way
 					localnb.previous = []point{currentPoint}
