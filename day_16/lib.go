@@ -2,7 +2,6 @@ package day_16
 
 import (
 	"advent/helpers"
-	"fmt"
 	"slices"
 	"strings"
 )
@@ -181,16 +180,11 @@ func dijkstra(m maze) int {
 				}
 			}
 
-			fmt.Println(m.layout[nb].cost, localnb.cost)
-
 			if m.layout[nb].visited {
 				if m.layout[nb].cost > localnb.cost { // We found a shorter way
 					localnb.previous = []point{currentPoint}
 					m.layout[nb] = localnb
 				} else if m.layout[nb].cost == localnb.cost {
-					if m.layout[nb].value == 'E' {
-						fmt.Println("Here, somehow", m.layout[nb].cost, localnb.cost)
-					}
 					localnb.previous = append(localnb.previous, currentPoint)
 					m.layout[nb] = localnb
 				}
