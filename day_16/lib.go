@@ -2,6 +2,8 @@ package day_16
 
 import (
 	"advent/helpers"
+	"fmt"
+	"slices"
 	"strings"
 )
 
@@ -18,10 +20,11 @@ const (
 )
 
 type square struct {
-	value   rune
-	cost    int
-	visited bool
-	facing  int
+	value    rune
+	cost     int
+	visited  bool
+	facing   int
+	previous []point
 }
 
 type maze struct {
@@ -67,6 +70,7 @@ func dijkstra(m maze) int {
 
 	for _, nb := range candidates {
 		localnb := m.layout[nb]
+		localnb.previous = []point{currentPoint}
 		switch m.layout[currentPoint].facing {
 		case EAST:
 			if nb.x == currentPoint.x+1 {
@@ -179,9 +183,17 @@ func dijkstra(m maze) int {
 
 			if m.layout[nb].visited {
 				if m.layout[nb].cost > localnb.cost { // We found a shorter way
+					localnb.previous = []point{currentPoint}
+					m.layout[nb] = localnb
+				} else if m.layout[nb].cost == localnb.cost {
+					if m.layout[nb].value == 'E' {
+						fmt.Println("Here, somehow", m.layout[nb].cost, localnb.cost)
+					}
+					localnb.previous = append(localnb.previous, currentPoint)
 					m.layout[nb] = localnb
 				}
 			} else {
+				localnb.previous = []point{currentPoint}
 				m.layout[nb] = localnb
 				candidates = append(candidates, nb)
 			}
@@ -227,4 +239,59 @@ func getLowestCost(candidates []point, m maze) point { // We'll have to replace 
 	}
 
 	return out
+}
+
+func walkBack(m maze) int {
+	currentPoint := m.end
+	visited := []point{currentPoint}
+	toCheck := m.layout[currentPoint].previous
+
+	for len(toCheck) != 0 {
+		currentPoint = toCheck[0]
+		if !slices.Contains(visited, currentPoint) {
+			visited = append(visited, currentPoint)
+		}
+		toCheck = helpers.Filter(toCheck, func(p point) bool { return p != currentPoint })
+
+		// Are any of the previous points not yet visited?
+		for _, p := range m.layout[currentPoint].previous {
+			if !slices.Contains(visited, p) && !slices.Contains(toCheck, p) { // We haven't visited that point yet
+				toCheck = append(toCheck, p)
+			}
+		}
+
+	}
+
+	return len(visited)
+}
+
+func walkBack2(m maze) int {
+	currentPoint := m.end
+
+	// Use a map as a set for efficient duplicate prevention
+	visited := make(map[point]bool)
+	toCheck := []point{currentPoint}
+
+	for len(toCheck) > 0 {
+		// Dequeue the first point
+		currentPoint = toCheck[0]
+		toCheck = toCheck[1:] // Remove the first element
+
+		// Skip if we've already visited this point
+		if visited[currentPoint] {
+			continue
+		}
+
+		// Mark the current point as visited
+		visited[currentPoint] = true
+
+		// Add all previous nodes to the queue if they haven't been visited
+		for _, p := range m.layout[currentPoint].previous {
+			if !visited[p] && !slices.Contains(toCheck, p) {
+				toCheck = append(toCheck, p)
+			}
+		}
+	}
+
+	return len(visited)
 }

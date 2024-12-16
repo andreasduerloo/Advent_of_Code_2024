@@ -15,5 +15,10 @@ func Solve() (interface{}, interface{}) {
 
 	first := dijkstra(m)
 
-	return first, 0
+	// For the second star we need to keep track of the optimal routes, i.e. every node also stores what was/were the previous node(s) in the shortest route to that node1.
+	second := walkBack2(m)
+	// fmt.Println(m.layout[m.end].previous)
+	// fmt.Println(m.layout[point{13, 2}].cost, m.layout[point{12, 1}].cost)
+
+	return first, second
 }
