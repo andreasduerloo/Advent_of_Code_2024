@@ -16,7 +16,7 @@
 - [X] Day 10: [Hoof It](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_10) :star::star:
 - [X] Day 11: [Plutonian Pebbles](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_11) :star::star:
 - [ ] Day 12: [Garden Groups](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_12) :star:
-- [ ] Day 13: [Claw Contraption](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_13) :star:
+- [X] Day 13: [Claw Contraption](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_13) :star::star:
 - [ ] Day 14:
 - [ ] Day 15:
 - [ ] Day 16: [Reindeer Maze](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_16) :star:

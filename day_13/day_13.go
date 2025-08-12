@@ -5,11 +5,6 @@ import (
 	"fmt"
 )
 
-// TODO
-// Swap out the slice of candidates with a min heap
-// This saves us iterating through all candidates to get the lowest cost AND
-// we won't need to iterate through all the candidates AGAIN to remove the lowest cost candidate
-
 func Solve() (interface{}, interface{}) {
 	inStr, err := helpers.GetInput(13)
 	if err != nil {
@@ -19,9 +14,25 @@ func Solve() (interface{}, interface{}) {
 	machines := parse(inStr)
 
 	var first int
+
 	for _, m := range machines {
-		first += solveMachine(m)
+		if m.solvable() {
+			// fmt.Println(m.solve())
+			first += m.solve()
+		}
 	}
 
-	return first, 0
+	var second int
+
+	for _, m := range machines {
+		m.prizex = m.prizex + 10000000000000
+		m.prizey = m.prizey + 10000000000000
+
+		if m.solvable() {
+			second += m.solve()
+		}
+
+	}
+
+	return first, second
 }
