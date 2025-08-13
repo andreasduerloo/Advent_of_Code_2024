@@ -20,7 +20,7 @@
 - [X] Day 14: [Restroom Redoubt](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_14) :star::star:
 - [ ] Day 15: [Warehouse Woes](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_15) :star:
 - [ ] Day 16: [Reindeer Maze](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_16) :star:
-- [ ] Day 17:
+- [ ] Day 17: [Chronospatial Computer](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_17) :star:
 - [ ] Day 18:
 - [ ] Day 19:
 - [ ] Day 20:
