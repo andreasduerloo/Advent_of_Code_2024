@@ -48,6 +48,5 @@ func Solve() (interface{}, interface{}) {
 		time.Sleep(50 * time.Millisecond)
 	}
 
-	// 52, 153, 254
 	return first, 0
 }

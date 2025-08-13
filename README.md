@@ -18,7 +18,7 @@
 - [ ] Day 12: [Garden Groups](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_12) :star:
 - [X] Day 13: [Claw Contraption](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_13) :star::star:
 - [X] Day 14: [Restroom Redoubt](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_14) :star::star:
-- [ ] Day 15:
+- [ ] Day 15: [Warehouse Woes](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_15) :star:
 - [ ] Day 16: [Reindeer Maze](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_16) :star:
 - [ ] Day 17:
 - [ ] Day 18:
