@@ -1,7 +1,7 @@
 # Advent_of_Code_2024
 
 ## Progress
-- **Total score: 32/50 :star:**
+- **Total score: 33/50 :star:**
 
 ## Solutions
 - [X] Day 1: [Historian Hysteria](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_01) :star::star:
@@ -22,7 +22,7 @@
 - [ ] Day 16: [Reindeer Maze](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_16) :star:
 - [ ] Day 17: [Chronospatial Computer](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_17) :star:
 - [X] Day 18: [RAM Run](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_18) :star::star:
-- [ ] Day 19:
+- [ ] Day 19: [Linen Layout](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_19) :star:
 - [ ] Day 20:
 - [ ] Day 21:
 - [ ] Day 22:
