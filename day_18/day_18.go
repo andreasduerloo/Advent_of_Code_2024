@@ -20,5 +20,21 @@ func Solve() (interface{}, interface{}) {
 
 	first := BFS(mem, point{x: 0, y: 0}, point{x: 70, y: 70})
 
-	return first, 0
+	// Second star, add blocks one by one
+	var steps int
+	try := 1024
+
+	for steps >= 0 {
+		resetVisits(mem)
+		corruptLocation(mem, locations[try])
+
+		steps = BFS(mem, point{x: 0, y: 0}, point{x: 70, y: 70})
+		if steps >= 0 {
+			try++
+		}
+	}
+
+	second := locations[try]
+
+	return first, second
 }

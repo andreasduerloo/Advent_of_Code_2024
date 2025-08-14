@@ -53,6 +53,18 @@ func corruptLocations(m memorySpace, locs []point, until int) {
 	}
 }
 
+func resetVisits(m memorySpace) {
+	for _, val := range m {
+		if val.visited {
+			val.visited = false
+		}
+	}
+}
+
+func corruptLocation(m memorySpace, loc point) {
+	m[loc].corrupt = true
+}
+
 type queue []point
 
 func enqueue(p point, q queue) queue {
@@ -116,5 +128,5 @@ func BFS(m memorySpace, start, end point) int {
 		}
 	}
 
-	return 0
+	return -1
 }
