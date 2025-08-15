@@ -23,8 +23,12 @@ func Solve() (interface{}, interface{}) {
 		}
 	}
 
+	countPoss := memoPossible()
+
 	for _, patt := range patterns {
-		second += countPossible(towels, patt)
+		if possible(towels, patt) {
+			second += countPoss(towels, patt)
+		}
 	}
 
 	return first, second

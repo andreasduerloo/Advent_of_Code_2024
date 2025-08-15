@@ -30,19 +30,32 @@ func possible(t []string, p string) bool {
 	return out
 }
 
-func countPossible(t []string, p string) int { // Oof. Memoization?
-	var out int
+func memoPossible() func([]string, string) int {
+	mem := make(map[string]int)
 
-	for _, tow := range t {
-		if len(p) > len(tow) {
-			if p[0:len(tow)] == tow {
-				out += countPossible(t, p[len(tow):])
+	var countPoss func([]string, string) int
+
+	countPoss = func(t []string, p string) int {
+		var out int
+
+		for _, tow := range t {
+			if poss, present := mem[p]; present {
+				return poss
 			}
-		} else if len(p) == len(tow) {
-			if p == tow {
-				out = 1
+			if len(p) > len(tow) {
+				if p[0:len(tow)] == tow {
+					subcount := countPoss(t, p[len(tow):])
+					out += subcount
+					mem[p[len(tow):]] = subcount
+				}
+			} else if len(p) == len(tow) {
+				if p == tow {
+					out += 1
+				}
 			}
 		}
+		return out
 	}
-	return out
+
+	return countPoss
 }
