@@ -1,7 +1,7 @@
 # Advent_of_Code_2024
 
 ## Progress
-- **Total score: 36/50 :star:**
+- **Total score: 37/50 :star:**
 
 ## Solutions
 - [X] Day 1: [Historian Hysteria](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_01) :star::star:
@@ -15,7 +15,7 @@
 - [X] Day 9: [Disk Fragmenter](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_09) :star::star:
 - [X] Day 10: [Hoof It](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_10) :star::star:
 - [X] Day 11: [Plutonian Pebbles](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_11) :star::star:
-- [ ] Day 12: [Garden Groups](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_12) :star:
+- [X] Day 12: [Garden Groups](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_12) :star::star:
 - [X] Day 13: [Claw Contraption](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_13) :star::star:
 - [X] Day 14: [Restroom Redoubt](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_14) :star::star:
 - [ ] Day 15: [Warehouse Woes](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_15) :star:

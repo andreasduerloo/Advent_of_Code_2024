@@ -32,7 +32,7 @@ func Solve() (interface{}, interface{}) {
 
 	var second int
 	for _, v := range fields {
-		fmt.Println(v.id, v.squares, calcSides(v.squares))
+		// fmt.Println(v.id, v.squares, calcSides(v.squares))
 		second += (v.size * calcSides(v.squares))
 	}
 

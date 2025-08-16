@@ -52,7 +52,7 @@ func parse(s string) grid {
 
 func buildField(l point, id int, layout grid, fields map[int]field) {
 	queue := neighbors(l, layout) // BFS
-	nb := point{}
+	var nb point
 
 	startingSquare := layout.squares[l]
 	startingSquare.field = id
@@ -126,6 +126,8 @@ func dequeue(s []point) (point, []point) {
 }
 
 func calcSides(shape []point) int {
+	var out int
+
 	// Find the minimum and maximum x and y values. This is a rectangle around our shape
 	minx := shape[0].x
 	maxx := shape[0].x
@@ -136,49 +138,64 @@ func calcSides(shape []point) int {
 		if p.x < minx {
 			minx = p.x
 		}
-		if p.x > minx {
+		if p.x > maxx {
 			maxx = p.x
 		}
 		if p.y < miny {
 			miny = p.y
 		}
-		if p.y > miny {
+		if p.y > maxy {
 			maxy = p.y
 		}
 	}
 
-	switches := make([]int, 0)
-	var out int
-
-	// Horizontally
-	for y := miny - 1; y <= maxy+1; y++ {
-		newSwitches := make([]int, 0)
-		for x := minx - 1; x <= maxx+1; x++ {
-
-			if slices.Contains(shape, point{x, y}) != slices.Contains(shape, point{x + 1, y}) {
-				if !slices.Contains(switches, x) {
-					out += 1
+	// Vertical scan
+	for x := minx; x <= maxx; x++ {
+		for y := miny - 1; y <= maxy+1; y++ {
+			// fmt.Println("Looking at point", x, y)
+			if !slices.Contains(shape, point{x, y}) && slices.Contains(shape, point{x, y + 1}) {
+				// We're entering the shape from above.
+				// This is a new side, unless point{x - 1, y + 1} IS in the shape, and point{x - 1, y} is NOT.
+				if !(slices.Contains(shape, point{x - 1, y + 1}) && !slices.Contains(shape, point{x - 1, y})) {
+					// fmt.Println("Adding one because we're entering from above")
+					out++
+					continue
 				}
-				newSwitches = append(newSwitches, x)
 			}
-			switches = newSwitches
+			if slices.Contains(shape, point{x, y}) && !slices.Contains(shape, point{x, y + 1}) {
+				// We're leaving the shape through the bottom.
+				// This is a new side, unless point{x - 1, y} IS in the shape, and point{x - 1, y + 1} is NOT.
+				if !(slices.Contains(shape, point{x - 1, y}) && !slices.Contains(shape, point{x - 1, y + 1})) {
+					// fmt.Println("Adding one because we're leaving through the bottom")
+					out++
+					continue
+				}
+			}
 		}
 	}
 
-	switches = make([]int, 0)
-
-	// Vertically
-	for x := minx - 1; x <= maxx+1; x++ {
-		newSwitches := make([]int, 0)
-		for y := miny - 1; y <= maxy+1; y++ {
-
-			if slices.Contains(shape, point{x, y}) != slices.Contains(shape, point{x, y + 1}) {
-				if !slices.Contains(switches, y) {
-					out += 1
+	// Horizontal scan
+	for y := miny; y <= maxy; y++ {
+		for x := minx - 1; x <= maxx+1; x++ {
+			// fmt.Println("Looking at point", x, y)
+			if !slices.Contains(shape, point{x, y}) && slices.Contains(shape, point{x + 1, y}) {
+				// We're entering the shape from the left.
+				// This is a new side, unless point{x + 1, y - 1} IS in the shape, and point{x, y - 1} is NOT.
+				if !(slices.Contains(shape, point{x + 1, y - 1}) && !slices.Contains(shape, point{x, y - 1})) {
+					// fmt.Println("Adding one because we're entering from the left")
+					out++
+					continue
 				}
-				newSwitches = append(newSwitches, y)
 			}
-			switches = newSwitches
+			if slices.Contains(shape, point{x, y}) && !slices.Contains(shape, point{x + 1, y}) {
+				// We're leaving the shape to the right.
+				// This is a new side, unless point{x, y - 1} IS in the shape, and point{x + 1, y - 1} is NOT.
+				if !(slices.Contains(shape, point{x, y - 1}) && !slices.Contains(shape, point{x + 1, y - 1})) {
+					// fmt.Println("Adding one as we're leaving to the right")
+					out++
+					continue
+				}
+			}
 		}
 	}
 
