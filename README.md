@@ -1,7 +1,7 @@
 # Advent_of_Code_2024
 
 ## Progress
-- **Total score: 37/50 :star:**
+- **Total score: 39/50 :star:**
 
 ## Solutions
 - [X] Day 1: [Historian Hysteria](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_01) :star::star:
@@ -27,5 +27,5 @@
 - [ ] Day 21:
 - [ ] Day 22: [Monkey Market](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_22) :star:
 - [ ] Day 23: [Lan Party](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_23) :star:
-- [ ] Day 24:
-- [ ] Day 25:
+- [ ] Day 24: [Crossed Wires](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_24) :star:
+- [ ] Day 25: [Code Chronicle](https://github.com/andreasduerloo/Advent_of_Code_2024/tree/main/day_25) :star:
